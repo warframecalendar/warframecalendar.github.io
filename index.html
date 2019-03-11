@@ -8,7 +8,16 @@
 
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.6/jstz.min.js"></script>
 	<script>
-		var url = "https://calendar.google.com/calendar/embed?title=Warframe&showTitle=0&showPrint=0&mode=WEEK&height=800&bgcolor=%23FFFFFF&src=sa15u0k6h8vgcm4uth4uvksano%40group.calendar.google.com&color=%23333333&src=6i22r12mio8t98f8bfnem4va10%40group.calendar.google.com&color=%232952A3";
+		var calendars = {  // value is color
+			'sa15u0k6h8vgcm4uth4uvksano@group.calendar.google.com': '#333333',
+			'6i22r12mio8t98f8bfnem4va10@group.calendar.google.com': '#2952A3',
+			'ug6sff8kip1e58hpgkctquj8ss@group.calendar.google.com': '#125A12',
+		};
+		var url = "https://calendar.google.com/calendar/embed?title=Warframe&showTitle=0&showPrint=0&mode=WEEK&height=800&bgcolor=%23FFFFFF";
+		for (var cal in calendars) {
+			url += '&src=' + encodeURIComponent(cal);
+			url += '&color=' + encodeURIComponent(calendars[cal]);
+		}
 		var timezone = jstz.determine();
 		url += "&ctz=" + timezone.name();
 		console.log("Detected timezone: ", timezone.name());
